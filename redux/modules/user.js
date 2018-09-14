@@ -1,7 +1,8 @@
 // Imports
 
-import { API_URL } from "../../constants";
+import { API_URL, GG_APP_ID, GG_WEB_ID } from "../../constants";
 import { AsyncStorage } from "react-native";
+import Expo from 'expo';
 
 // Actions
 
@@ -53,6 +54,39 @@ function login(username, password) {
         }
       });
   };
+}
+
+function googleLogin() {
+  return async dispatch => {
+    const result = await Expo.Google.logInAsync({
+      androidClientId: GG_APP_ID,
+      webClientId: GG_WEB_ID,
+      scopes: ['profile', 'email'],
+    });
+    if (result.type === 'success') {
+      return fetch(`${API_URL}/users/login/google/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          access_token: result.accessToken
+        })
+      })
+      .then(response => response.json())
+      .then(json => {
+        if(json.user && json.token) {
+          dispatch(setLogIn(json.token));
+          dispatch(setUser(json.user));
+          return true;
+        } else {
+          return false;
+        }
+      });
+    } else {
+      return {cancelled: true};
+    }
+  }
 }
 
 // Initial State
@@ -107,7 +141,8 @@ function applySetUser(state, action) {
 // Exports
 
 const actionCreators = {
-  login
+  login,
+  googleLogin
 };
 
 export { actionCreators };

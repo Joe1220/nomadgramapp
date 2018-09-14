@@ -10,7 +10,8 @@ class Container extends Component {
     isSubmitting: false
   };
   static propTypes = {
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    ggLogin: PropTypes.func.isRequired
   };
   render() {
     return (
@@ -19,6 +20,7 @@ class Container extends Component {
         changeUsername={this._changeUsername}
         changePassword={this._changePassword}
         submit={this._submit}
+        ggLogin={this._handleGGLogin}
       />
     );
   }
@@ -46,6 +48,14 @@ class Container extends Component {
       }
     }
   };
+  _handleGGLogin = async () => {
+    const { ggLogin } = this.props;
+    this.setState({isSubmitting: true})
+    const googleResult = await ggLogin();
+    if(!googleResult) {
+      this.setState({isSubmitting: false});
+    }
+  }
 }
 
 export default Container;

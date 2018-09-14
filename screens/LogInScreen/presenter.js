@@ -53,7 +53,7 @@ const LogInScreen = props => (
           )}
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.ggContainer}>
+      <TouchableOpacity style={styles.ggContainer} onPressOut={props.ggLogin}>
         <View style={styles.ggView}>
           <Ionicons name="logo-google" size={22} color="#3E99EE" />
           <Text style={styles.ggText}>Log in with Google</Text>
@@ -69,7 +69,8 @@ LogInScreen.propTypes = {
   password: PropTypes.string.isRequired,
   changeUsername: PropTypes.func.isRequired,
   changePassword: PropTypes.func.isRequired,
-  submit: PropTypes.func.isRequired
+  submit: PropTypes.func.isRequired,
+  ggLogin: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
