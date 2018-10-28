@@ -4,13 +4,16 @@ import sharedRoutes, { sharedOptions } from "./sharedRoutes";
 
 const NotificationsRoute = createStackNavigator(
     {
-        Notifications: {
-            screen: NotificationsScreen
-        },
-        ...sharedRoutes
+      Notifications: {
+        screen: NotificationsScreen,
+        navigationOptions: {
+          headerTitle: "Notifications"
+        }
+      },
+      ...sharedRoutes
     },
     {
-        ...sharedOptions
+      ...sharedOptions
     }
 )
 
