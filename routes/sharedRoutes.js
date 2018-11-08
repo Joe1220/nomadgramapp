@@ -5,10 +5,16 @@ import NavButton from "../components/NavButton";
 
 const sharedRoutes = {
   Likes: {
-    screen: LikesScreen
+    screen: LikesScreen,
+    navigationOptions: {
+      headerTitle: "Likes"
+    }
   },
   Comments: {
-    screen: CommentsScreen
+    screen: CommentsScreen,
+    navigationOptions: {
+      headerTitle: "Comments"
+    }
   }
 };
 
@@ -23,4 +29,3 @@ const sharedOptions = {
 
 export { sharedOptions };
 
-export default sharedRoutes;
