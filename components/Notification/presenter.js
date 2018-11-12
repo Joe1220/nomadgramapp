@@ -1,3 +1,4 @@
+
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -16,7 +17,7 @@ const { width, height } = Dimensions.get("window");
 const Notification = props => (
   <View style={styles.container}>
     <TouchableOpacity
-      onPress={() =>
+      onPressOut={() =>
         props.navigation.navigate("ProfileDetail", {
           user: props.creator
         })
