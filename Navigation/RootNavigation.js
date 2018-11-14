@@ -1,19 +1,27 @@
-import { createStackNavigator } from "react-navigation";
+import { StackNavigator } from "react-navigation";
 import TakePhotoScreen from "../screens/TakePhotoScreen";
-import TabNavigation from "./TabsNavigation"
+import TabsNavigation from "./TabsNavigation";
+import UploadPhotoScreen from "../screens/UploadPhotoScreen";
+import AddPhotoNavigation from "./AddPhotoNavigation";
 
-const RootNavigation = createStackNavigator(
+const RootNavigation = StackNavigator(
   {
     Tabs: {
-      screen: TabNavigation,
+      screen: TabsNavigation,
       navigationOptions: {
         header: null
       }
     },
     TakePhoto: {
-      screen: TakePhotoScreen,
+      screen: AddPhotoNavigation,
       navigationOptions: {
         header: null
+      }
+    },
+    UploadPhoto: {
+      screen: UploadPhotoScreen,
+      navigationOptions: {
+        title: "Upload Photo"
       }
     }
   },
